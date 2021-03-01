@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:panelHeader text=" " id="ph1"
+                        type="flow"
+                        inlineStyle="font-family:'Times New Roman', 'Arial Black', times, Serif; font-size:medium; height:150.0px;">
+          <f:facet name="context"/>
+          <f:facet name="menuBar">
+            <af:statusIndicator id="si1"
+                                inlineStyle="width:3000px; font-size:xx-large;"
+                                partialTriggers="cb1"/>
+          </f:facet>
+          <f:facet name="toolbar"/>
+          <f:facet name="legend">
+            <af:group id="g1">
+              <af:outputText value="Export Shipment Follow up" id="ot24"
+                             inlineStyle="color:Black; font-family:'Poor Richard'; font-size:xx-large; text-decoration:underline;"/>
+            </af:group>
+          </f:facet>
+          <f:facet name="info"/>
+          <af:spacer width="10" height="10" id="s1"/>
+          <af:panelFormLayout id="pfl1" rows="2" maxColumns="4"
+                              inlineStyle="border-color:Black; border-style:dashed; border-width:thin; outline-color:Blue;">
+            <af:inputDate value="#{bindings.toDate.inputValue}"
+                          label="From_Delivery_Date:"
+                          required="#{bindings.toDate.hints.mandatory}"
+                          shortDesc="#{bindings.toDate.hints.tooltip}" id="id9">
+              <f:validator binding="#{bindings.toDate.validator}"/>
+              <af:convertDateTime pattern="#{bindings.toDate.format}"/>
+            </af:inputDate>
+            <af:inputDate value="#{bindings.endDate.inputValue}"
+                          label="To_Delivery_Date:"
+                          required="#{bindings.endDate.hints.mandatory}"
+                          shortDesc="#{bindings.endDate.hints.tooltip}"
+                          id="id8">
+              <f:validator binding="#{bindings.endDate.validator}"/>
+              <af:convertDateTime pattern="#{bindings.endDate.format}"/>
+            </af:inputDate>
+            <af:inputDate value="#{bindings.TO_PL_DATE.inputValue}"
+                          label="From_PL_DATE:"
+                          required="#{bindings.TO_PL_DATE.hints.mandatory}"
+                          shortDesc="#{bindings.TO_PL_DATE.hints.tooltip}"
+                          id="id2">
+              <f:validator binding="#{bindings.TO_PL_DATE.validator}"/>
+              <af:convertDateTime pattern="#{bindings.TO_PL_DATE.format}"/>
+            </af:inputDate>
+            <af:inputDate value="#{bindings.End_PL_DATE.inputValue}"
+                          label="To_PL_DATE:"
+                          required="#{bindings.End_PL_DATE.hints.mandatory}"
+                          shortDesc="#{bindings.End_PL_DATE.hints.tooltip}"
+                          id="id10">
+              <f:validator binding="#{bindings.End_PL_DATE.validator}"/>
+              <af:convertDateTime pattern="#{bindings.End_PL_DATE.format}"/>
+            </af:inputDate>
+            <af:inputDate value="#{bindings.To_Exfactor.inputValue}"
+                          label="From_Exfactor_date:"
+                          required="#{bindings.To_Exfactor.hints.mandatory}"
+                          shortDesc="#{bindings.To_Exfactor.hints.tooltip}"
+                          id="id1">
+              <f:validator binding="#{bindings.To_Exfactor.validator}"/>
+              <af:convertDateTime pattern="#{bindings.To_Exfactor.format}"/>
+            </af:inputDate>
+            <af:inputDate value="#{bindings.En_Exfactor.inputValue}"
+                          label="To_Exfactor_Date:"
+                          required="#{bindings.En_Exfactor.hints.mandatory}"
+                          shortDesc="#{bindings.En_Exfactor.hints.tooltip}"
+                          id="id7">
+              <f:validator binding="#{bindings.En_Exfactor.validator}"/>
+              <af:convertDateTime pattern="#{bindings.En_Exfactor.format}"/>
+            </af:inputDate>
+            <af:commandButton actionListener="#{bindings.ExecuteWithParams.execute}"
+                              text="Search"
+                              disabled="#{!bindings.ExecuteWithParams.enabled}"
+                              id="cb1" icon="/icon/view-details_318-1493.jpg"
+                              partialSubmit="true"/>
+          </af:panelFormLayout>
+        </af:panelHeader>
+        <af:panelCollection id="pc1" inlineStyle="width:auto; height:400.0px;">
+          <f:facet name="menus"/>
+          <f:facet name="toolbar">
+            <af:toolbar id="t2">
+              <af:commandButton text=" " id="cb2"
+                                icon="/icon/iconfinder_excel_272697.png">
+                <af:exportCollectionActionListener exportedId="t1"
+                                                   type="excelHTML"
+                                                   filename="Export Shipment Follow up.xls"/>
+              </af:commandButton>
+            </af:toolbar>
+          </f:facet>
+          <f:facet name="statusbar"/>
+          <af:table value="#{bindings.Export_Shipment_Follow_up1.collectionModel}"
+                    var="row"
+                    rows="#{bindings.Export_Shipment_Follow_up1.rangeSize}"
+                    emptyText="#{bindings.Export_Shipment_Follow_up1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.Export_Shipment_Follow_up1.rangeSize}"
+                    rowBandingInterval="0"
+                    filterModel="#{bindings.Export_Shipment_Follow_up1Query.queryDescriptor}"
+                    queryListener="#{bindings.Export_Shipment_Follow_up1Query.processQuery}"
+                    filterVisible="true" varStatus="vs"
+                    selectedRowKeys="#{bindings.Export_Shipment_Follow_up1.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.Export_Shipment_Follow_up1.collectionModel.makeCurrent}"
+                    rowSelection="single" id="t1" partialTriggers=":::cb1"
+                    inlineStyle="color:Black; font-family:'Times New Roman', 'Arial Black', times, Serif; height:auto;"
+                    contentDelivery="lazy">
+            <af:column sortProperty="LcUnit" filterable="true" sortable="true"
+                       headerText="LC Unit"
+                       id="c19" align="center">
+              <af:outputText value="#{row.LcUnit}" id="ot18"/>
+            </af:column>
+            <af:column sortProperty="Buyer" filterable="true" sortable="true"
+                       headerText="#{bindings.Export_Shipment_Follow_up1.hints.Buyer.label}"
+                       id="c21" align="center">
+              <af:outputText value="#{row.Buyer}" id="ot3"/>
+            </af:column>
+            <af:column sortProperty="Season" filterable="true" sortable="true"
+                       headerText="#{bindings.Export_Shipment_Follow_up1.hints.Season.label}"
+                       id="c20" align="center">
+              <af:outputText value="#{row.Season}" id="ot1"/>
+            </af:column>
+            <af:column sortProperty="Style" filterable="true" sortable="true"
+                       headerText="#{bindings.Export_Shipment_Follow_up1.hints.Style.label}"
+                       id="c2" align="center">
+              <af:outputText value="#{row.Style}" id="ot6"/>
+            </af:column>
+            <af:column sortProperty="Bpo" filterable="true" sortable="true"
+                       headerText="BPO"
+                       id="c14" align="center">
+              <af:outputText value="#{row.Bpo}" id="ot10"/>
+            </af:column>
+            <af:column sortProperty="BpoQty" filterable="true" sortable="true"
+                       headerText="BPO Qty"
+                       id="c5" align="center">
+              <af:outputText value="#{row.BpoQty}" id="ot13">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.BpoQty.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="UnitPrice" filterable="true"
+                       sortable="true"
+                       headerText="Unit Price"
+                       id="c3" align="center">
+              <af:outputText value="#{row.UnitPrice}" id="ot21">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.UnitPrice.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="Total" filterable="true" sortable="true"
+                       headerText="#{bindings.Export_Shipment_Follow_up1.hints.Total.label}"
+                       id="c16" align="center">
+              <af:outputText value="#{row.Total}" id="ot12">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.Total.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="DeliveryDate" filterable="true"
+                       sortable="true"
+                       headerText="Delivery Date"
+                       id="c15" align="center">
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.DeliveryDate}"
+                              id="id3"/>
+              </f:facet>
+              <af:outputText value="#{row.DeliveryDate}" id="ot8">
+                <af:convertDateTime pattern="#{bindings.Export_Shipment_Follow_up1.hints.DeliveryDate.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="DcCountry" filterable="true"
+                       sortable="true" headerText="DC" id="c7"
+                       align="center">
+              <af:outputText value="#{row.DcCountry}" id="ot23"/>
+            </af:column>
+            <af:column sortProperty="PlDate" filterable="true" sortable="true"
+                       headerText="PL Date"
+                       id="c9" align="center">
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.PlDate}" id="id5"/>
+              </f:facet>
+              <af:outputText value="#{row.PlDate}" id="ot7">
+                <af:convertDateTime pattern="#{bindings.Export_Shipment_Follow_up1.hints.PlDate.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="PlNo" filterable="true" sortable="true"
+                       headerText="PL No"
+                       id="c22" align="center">
+              <af:outputText value="#{row.PlNo}" id="ot20">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.PlNo.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="Status" filterable="true" sortable="true"
+                       headerText="#{bindings.Export_Shipment_Follow_up1.hints.Status.label}"
+                       id="c1" align="center">
+              <af:outputText value="#{row.Status}" id="ot14"/>
+            </af:column>
+            <af:column headerText="Contract Lc Number"
+                       id="c24" align="center" sortable="true"
+                       filterable="true" width="60"
+                       sortProperty="ContractLcNumber">
+              <af:outputText value="#{row.ContractLcNumber}" id="ot25"/>
+            </af:column>
+            <af:column headerText="Ex-Factory-Date(CI_HEADERS)"
+                       id="c26" align="center" sortable="true"
+                       filterable="true" sortProperty="ExFactoryDate"
+                       visible="true">
+              <af:outputText value="#{row.ExFactoryDate}" id="ot27">
+                <af:convertDateTime pattern="#{bindings.Export_Shipment_Follow_up1.hints.ExFactoryDate.format}"/>
+              </af:outputText>
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.ExFactoryDate}"
+                              id="inputDate1"/>
+              </f:facet>
+            </af:column>
+            <af:column headerText="Ex Factory Date(TRAN_HEADERS)"
+                       id="c27" sortProperty="ExFactoryDateNew" sortable="true"
+                       filterable="true" align="center">
+              <af:outputText value="#{row.ExFactoryDateNew}" id="ot28">
+                <af:convertDateTime pattern="#{bindings.Export_Shipment_Follow_up1.hints.ExFactoryDateNew.format}"/>
+              </af:outputText>
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.PlDate}"
+                              id="inputDate2"/>
+              </f:facet>
+            </af:column>
+            <af:column sortProperty="ExFactory" filterable="true"
+                       sortable="true"
+                       headerText="Ex-Factory"
+                       id="c6" align="center" visible="false">
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.ExFactory}" id="id4"/>
+              </f:facet>
+              <af:outputText value="#{row.ExFactory}" id="ot2">
+                <af:convertDateTime pattern="#{bindings.Export_Shipment_Follow_up1.hints.ExFactory.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="DocNo" filterable="true" sortable="true"
+                       headerText="Doc No"
+                       id="c4" align="center">
+              <af:outputText value="#{row.DocNo}" id="ot22">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.DocNo.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column headerText="Invoice No"
+                       id="c25" align="center" sortable="true"
+                       filterable="true" sortProperty="InvoiceNo">
+              <af:outputText value="#{row.InvoiceNo}" id="ot26"/>
+            </af:column>
+            <af:column sortProperty="ShipQty" filterable="true" sortable="true"
+                       headerText="Ship Qty"
+                       id="c10" align="center">
+              <af:outputText value="#{row.ShipQty}" id="ot11">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.ShipQty.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="UnitShipPrice" filterable="true"
+                       sortable="true"
+                       headerText="Unit Ship Price"
+                       id="c17" align="center">
+              <af:outputText value="#{row.UnitShipPrice}" id="ot15">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.UnitShipPrice.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="TotalShipAmt" filterable="true"
+                       sortable="true"
+                       headerText="Total Ship Amt"
+                       id="c8" align="center">
+              <af:outputText value="#{row.TotalShipAmt}" id="ot16">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.TotalShipAmt.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="ComissionAmt" filterable="true"
+                       sortable="true"
+                       headerText="Comission Amt"
+                       id="c13" align="center">
+              <af:outputText value="#{row.ComissionAmt}" id="ot19">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.ComissionAmt.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="InvoiceValue" filterable="true"
+                       sortable="true" headerText="Invoice Value" id="c23"
+                       align="center">
+              <af:outputText value="#{row.InvoiceValue}" id="ot9">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.Export_Shipment_Follow_up1.hints.InvoiceValue.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="TrxNo" filterable="true" sortable="true"
+                       headerText="Trx No"
+                       id="c11" align="center">
+              <af:outputText value="#{row.TrxNo}" id="ot4"/>
+            </af:column>
+            <af:column sortProperty="TrxDate" filterable="true" sortable="true"
+                       headerText="Trx Date"
+                       id="c12" align="center">
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.TrxDate}" id="id6"/>
+              </f:facet>
+              <af:outputText value="#{row.TrxDate}" id="ot5">
+                <af:convertDateTime pattern="#{bindings.Export_Shipment_Follow_up1.hints.TrxDate.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="Remarks" filterable="true" sortable="true"
+                       headerText="#{bindings.Export_Shipment_Follow_up1.hints.Remarks.label}"
+                       id="c18" align="center">
+              <af:outputText value="#{row.Remarks}" id="ot17"/>
+            </af:column>
+          </af:table>
+          <f:facet name="viewMenu"/>
+        </af:panelCollection>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

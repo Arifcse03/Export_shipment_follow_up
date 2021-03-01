@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.62.29" id="SearchPgPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="Export_Shipment_Follow_up1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="Export_Shipment_Follow_up1Iterator"/>
+    <searchRegion Binds="Export_Shipment_Follow_up1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="Export_Shipment_Follow_up1Query"/>
+    <variableIterator id="variables">
+      <variableUsage DataControl="AppModuleDataControl"
+                     Binds="Export_Shipment_Follow_up1.variablesMap.toDate"
+                     Name="ExecuteWithParams_toDate" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl"
+                     Binds="Export_Shipment_Follow_up1.variablesMap.endDate"
+                     Name="ExecuteWithParams_endDate" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl"
+                     Binds="Export_Shipment_Follow_up1.variablesMap.TO_PL_DATE"
+                     Name="ExecuteWithParams_TO_PL_DATE" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl"
+                     Binds="Export_Shipment_Follow_up1.variablesMap.End_PL_DATE"
+                     Name="ExecuteWithParams_End_PL_DATE" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl"
+                     Binds="Export_Shipment_Follow_up1.variablesMap.To_Exfactor"
+                     Name="ExecuteWithParams_To_Exfactor" IsQueriable="false"/>
+      <variableUsage DataControl="AppModuleDataControl"
+                     Binds="Export_Shipment_Follow_up1.variablesMap.En_Exfactor"
+                     Name="ExecuteWithParams_En_Exfactor" IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <tree IterBinding="Export_Shipment_Follow_up1Iterator"
+          id="Export_Shipment_Follow_up1">
+      <nodeDefinition DefName="model.Export_Shipment_Follow_up"
+                      Name="Export_Shipment_Follow_up10">
+        <AttrNames>
+          <Item Value="LcUnit"/>
+          <Item Value="Buyer"/>
+          <Item Value="Season"/>
+          <Item Value="Style"/>
+          <Item Value="Bpo"/>
+          <Item Value="BpoQty"/>
+          <Item Value="UnitPrice"/>
+          <Item Value="Total"/>
+          <Item Value="DeliveryDate"/>
+          <Item Value="PlDate"/>
+          <Item Value="PlNo"/>
+          <Item Value="DcCountry"/>
+          <Item Value="Status"/>
+          <Item Value="ExFactory"/>
+          <Item Value="DocNo"/>
+          <Item Value="ShipQty"/>
+          <Item Value="UnitShipPrice"/>
+          <Item Value="TotalShipAmt"/>
+          <Item Value="ComissionAmt"/>
+          <Item Value="InvoiceValue"/>
+          <Item Value="TrxNo"/>
+          <Item Value="TrxDate"/>
+          <Item Value="Remarks"/>
+          <Item Value="ContractLcNumber"/>
+          <Item Value="InvoiceNo"/>
+          <Item Value="ExFactoryDate"/>
+          <Item Value="ExFactoryDateNew"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="Export_Shipment_Follow_up1Iterator"
+            id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="toDate" NDType="oracle.jbo.domain.Date"
+                 NDValue="${bindings.ExecuteWithParams_toDate}"/>
+      <NamedData NDName="endDate" NDType="oracle.jbo.domain.Date"
+                 NDValue="${bindings.ExecuteWithParams_endDate}"/>
+      <NamedData NDName="TO_PL_DATE" NDType="oracle.jbo.domain.Date"
+                 NDValue="${bindings.ExecuteWithParams_TO_PL_DATE}"/>
+      <NamedData NDName="End_PL_DATE" NDType="oracle.jbo.domain.Date"
+                 NDValue="${bindings.ExecuteWithParams_End_PL_DATE}"/>
+      <NamedData NDName="To_Exfactor" NDType="oracle.jbo.domain.Date"
+                 NDValue="${bindings.ExecuteWithParams_To_Exfactor}"/>
+      <NamedData NDName="En_Exfactor" NDType="oracle.jbo.domain.Date"
+                 NDValue="${bindings.ExecuteWithParams_En_Exfactor}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="toDate">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_toDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="endDate">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_endDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="TO_PL_DATE">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_TO_PL_DATE"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="End_PL_DATE">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_End_PL_DATE"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="To_Exfactor">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_To_Exfactor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="En_Exfactor">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_En_Exfactor"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>
